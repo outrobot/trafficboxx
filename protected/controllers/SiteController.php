@@ -32,6 +32,48 @@ class SiteController extends Controller
 		$this->render('index');
 	}
 
+        public function actionXml()
+        {
+            $url = 'http://services.radiatemedia.com/cyrus/rest/city?metro_id=2';
+            $i = 1;
+            if (($response_xml_data = file_get_contents($url))===false){
+                echo "Error fetching XML\n";
+            } else {
+               libxml_use_internal_errors(true);
+               $data = simplexml_load_string($response_xml_data);
+               if (!$data) {
+                   echo "Error loading XML\n";
+                   foreach(libxml_get_errors() as $error) {
+                       echo "\t", $error->message;
+                   }
+               } else {
+                   foreach($data->KEYROUTES->ROUTE as $route)
+                   {
+                       //echo $route->NAME . ': ' . $route->DESCRIPTION . '<br>';
+                       //echo $route->DRIVETIME[0]->ROUTEID . '<br>';
+                       
+                        echo $i;
+                        echo $route->NAME . ': ' . $route->DESCRIPTION . '<br>';
+                        if(!empty($route->TRAVEL_TIME->DELAYTIME))
+                        {
+                            echo 'Drivetime: ';
+                            echo $route->TRAVEL_TIME->DRIVETIME;
+                            echo '<br>';
+                            echo 'Delay: ';
+                            echo $route->TRAVEL_TIME->DELAYTIME;  
+                        } else {
+                            echo 'Drivetime: Normal';
+                        }
+                        echo '<br>';
+                        echo 'Jam Factor: ' . $route->JAMFACTOR;
+                        
+                        echo '<hr>';
+                        $i++;
+                   }
+               }
+            }
+        }
+        
 	/**
 	 * This is the action to handle external exceptions.
 	 */
@@ -106,4 +148,19 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+        
+        public function actionGenerateUrl()
+        {
+            $token = 'pk.eyJ1Ijoib3V0cm9ib3QiLCJhIjoiSHFjYTVEcyJ9.A1HPH5dGkeA2ultB60BMcg';
+            
+            
+            $pathData = 'auqrF|vtiMe@vE?@MtAADMlAMlAOnAMpA]jBKx@M`ACRE^G\\g@vDi@vD{A~KCV?@AJIl@?FQrBAJKrA_@|FAPCPK`Be@bHo@rJe@vGIxAG~@?NeAbP?HOtBOtBMlBIhAG`AG|@q@dKEj@Cb@}AtUEb@I|AM|CAl@EhA?LElBA@?DIjC_C|]Cb@Cf@E\\Gj@Kl@Mb@Up@Wl@_@l@Y^YZQLWRQJULc@PYHQDOBYDO@U@W?WAc@Ci@EmBWyKaB}Ec@[EA?c@ACAM?]Fo@HSD[JIDE@EBGBKD?@i@ZkAtAQZMRaAjBU^IJOTOL_@^aA~@GDGHCDCBGLQROL_BzAi@d@yAtAyAtAQPaKdJg@b@mBjBs@p@WXMPuB`Ca@d@c@h@cAdAs@p@aA|@qChC_@ZOJOHOHUJUFMDQBWFQ?M@O?c@@OAC?WAs@EU?O?QA]AeAG_AEc@Cw@E}@Gm@Ee@Gg@Ii@Ki@Qg@QYOe@YWOQOA??A_@Yg@g@k@k@{@aAg@e@IIAACECACEGEs@u@EGA?ACGGKIuByBKMOMa@c@yDuDSSi@i@i@i@k@i@IIGEGEIGc@a@oBoBm@k@u@u@WYUWOSm@s@GIA?]c@y@}@_@a@eA_A][}AoBg@y@w@aAW_@IKo@gAy@sAq@cAMOe@eA]k@uA}Bu@sAUa@kBcDcAeBq@iAOWIGcCiE]k@y@eAk@o@iBwAi@[iB_AaAg@UMuAk@s@]gBu@]M[KUIEACACAeA[wC{@sC}@c@MA?o@SCAeA[c@Eg@KCAa@K';
+            $overviewData = 'auqrF|vtiMoBrRi@dDQtA_BlL_BxLK`A_ApMw@hL}Dxm@sBb[cBxVWzFMrFAFIjC_C|]GjAMhAYpAm@~Ay@lAk@h@i@^y@^k@Ni@He@Bo@AmAIgOyByFi@e@Ao@DcANe@P_@Ni@\\}ApBoA~B_@j@_@b@aB~AWXY`@oBhBoFbFiLhKaD|C}DrEgBnBuBnBqDdD_@Te@Tc@Li@J_@@gA?kAGe@?uDQgEWmAQsA]aAa@}@i@s@k@wD{DsAuA]]sDyDaH}GeA_AkEeEsB{BuAaByA_BcB{A}AoBg@y@oAaBeDkFs@uAsBiD{F_KaAaBIGcCiEwAqBk@o@iBwAsC{AaAg@gGmCuAe@_LgDyBq@kAQe@MUS_@Uu@O_AIsACqAF}@Ly@Vo@Zq@f@EB';
+            $path = urlencode($overviewData);
+            
+            $lat = 39.9594369;
+            $lng = -75.1500746;
+            $url = 'http://api.tiles.mapbox.com/v4/outrobot.j5d8dfpg/path-5+f44+f44(' . $path . ')/auto/500x300.png?access_token=' . $token;
+            echo $url;
+        }
 }
