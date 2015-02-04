@@ -47,29 +47,84 @@ class SiteController extends Controller
                        echo "\t", $error->message;
                    }
                } else {
+
                    foreach($data->KEYROUTES->ROUTE as $route)
                    {
                        //echo $route->NAME . ': ' . $route->DESCRIPTION . '<br>';
                        //echo $route->DRIVETIME[0]->ROUTEID . '<br>';
                        
-                        echo $i;
-                        echo $route->NAME . ': ' . $route->DESCRIPTION . '<br>';
-                        if(!empty($route->TRAVEL_TIME->DELAYTIME))
-                        {
-                            echo 'Drivetime: ';
-                            echo $route->TRAVEL_TIME->DRIVETIME;
-                            echo '<br>';
-                            echo 'Delay: ';
-                            echo $route->TRAVEL_TIME->DELAYTIME;  
-                        } else {
-                            echo 'Drivetime: Normal';
-                        }
+                        echo $i . ') <br>';
+                        echo 'ID: ' . $route['ID']->__toString();
+                        echo '<br>';
+                        echo 'Permanent ID: ' . $route->PERMANENTID;
+                        echo '<br>';
+                        echo 'Name: ' . $route->NAME;
+                        echo '<br>';
+                        echo 'Description: ' . $route->DESCRIPTION;
+                        echo '<br>';
+                        echo 'Drivetime: ';
+                        echo $route->TRAVEL_TIME->DRIVETIME;
+                        echo '<br>';
+                        echo 'Delay: ';
+                        echo $route->TRAVEL_TIME->DELAYTIME;  
+                        echo '<br>';
+                        echo 'Length: ';
+                        echo $route->TRAVEL_TIME->LENGTH; 
+                        echo '<br>';
+                        echo 'Avg Speed: ';
+                        echo $route->TRAVEL_TIME->AVERAGESPEED; 
                         echo '<br>';
                         echo 'Jam Factor: ' . $route->JAMFACTOR;
+                        echo '<br>';
+                        echo 'Jam Factor Trend: ' . $route->JAMFACTORTREND;
                         
                         echo '<hr>';
                         $i++;
                    }
+                    /*
+                   foreach($data->INCIDENTS->INCIDENT as $incident)
+                   {                     
+                        echo $i . ') <br>';
+                        echo 'ID: ' . $incident['ID']->__toString();
+                        echo '<br>';
+                        echo 'Description: ' . $incident->DESCRIPTION;
+                        echo '<br>';
+                        echo 'Location: ';
+                        echo $incident->LOCATION; 
+                        echo '<br>';
+                        echo 'Criticality: ';
+                        echo $incident->CRITICALITY; 
+                        echo '<br>';
+                        echo 'Type: ';
+                        echo $incident->TYPE['ID']->__toString(); 
+                        echo '<br>';
+                        echo 'Type ID: ';
+                        echo Incident::model()->getTypeId($incident->TYPE['ID']->__toString()); 
+                        echo '<br>';
+                        echo 'Type Description: ';
+                        echo $incident->TYPE_DESC; 
+                        echo '<br>';
+                        echo 'Direction: ';
+                        echo $incident->DIRECTION['VALUE']; 
+                        echo '<br>';
+                        echo 'GPS Lat: ';
+                        echo $incident->GEOLOCATION['LATITUDE']->__toString(); 
+                        echo '<br>';
+                        echo 'GPS Lng: ';
+                        echo $incident->GEOLOCATION['LONGITUDE']->__toString(); 
+                        echo '<br>';
+                        echo 'Start Time: ';
+                        echo $incident->STARTTIME['VALUE'];
+                        echo '<br>';
+                        echo 'End Time: ';
+                        echo $incident->ENDTIME['VALUE'];
+                        
+                        
+                        echo '<hr>';
+                        $i++;
+                   }
+                    * 
+                    */
                }
             }
         }

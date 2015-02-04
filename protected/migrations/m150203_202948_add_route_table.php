@@ -4,7 +4,7 @@ class m150203_202948_add_route_table extends CDbMigration
 {
 	public function up()
 	{
-            $this->addTable('tbl_route', array(
+            $this->createTable('tbl_route', array(
                'id'=>'pk',
                 'permanent_id'=>'string DEFAULT NULL',
                 'name'=>'string NOT NULL',
@@ -14,7 +14,8 @@ class m150203_202948_add_route_table extends CDbMigration
                 'length'=>'int NOT NULL',
                 'jamfactor'=>'float DEFAULT NULL',
                 'jamfactor_trend'=>'float DEFAULT NULL',
-                'path'=>'text DEFAULT NULL'
+                'path'=>'text DEFAULT NULL',
+                'update_time'=>'datetime NOT NULL'
             ));
 	}
 
