@@ -127,7 +127,11 @@ class RouteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Route');
+		$dataProvider=new CActiveDataProvider('Route', array(
+                    'sort'=>array(
+                        'defaultOrder'=>'delaytime DESC'
+                    )
+                ));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

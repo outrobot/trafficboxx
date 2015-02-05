@@ -20,7 +20,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=trafficbox',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'marvin',
 			'charset' => 'utf8',
 		),
 
