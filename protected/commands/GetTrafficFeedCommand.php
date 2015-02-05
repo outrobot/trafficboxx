@@ -54,6 +54,10 @@ class GetTrafficFeedCommand extends CConsoleCommand
                             $model->jamfactor = $route->JAMFACTOR;
                             $model->jamfactor_trend = $route->JAMFACTORTREND;
                             $model->update_time = new CDbExpression('NOW()');
+                            if(!$model->save())
+                            {
+                                echo var_dump($model->getErrors());
+                            }
                        }
                    }
 
