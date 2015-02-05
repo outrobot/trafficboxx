@@ -43,16 +43,16 @@ class GetTrafficFeedCommand extends CConsoleCommand
                            ));
                        } else {
                             $model = new Route;
-                            $model->id = $route['ID']->__toString();
+                            $model->id = (int) $route['ID']->__toString();
                             $model->permanent_id = $route->PERMANENTID;
                             $model->name = $route->NAME;
                             $model->description = $route->DESCRIPTION;
-                            $model->drivetime = $route->TRAVEL_TIME->DRIVETIME;
-                            $model->delaytime = $route->TRAVEL_TIME->DELAYTIME;
-                            $model->length = $route->TRAVEL_TIME->LENGTH;
-                            $model->average_speed = $route->TRAVEL_TIME->AVERAGESPEED;
-                            $model->jamfactor = $route->JAMFACTOR;
-                            $model->jamfactor_trend = $route->JAMFACTORTREND;
+                            $model->drivetime = (int) $route->TRAVEL_TIME->DRIVETIME;
+                            $model->delaytime = (int) $route->TRAVEL_TIME->DELAYTIME;
+                            $model->length = (int) $route->TRAVEL_TIME->LENGTH;
+                            $model->average_speed = (int) $route->TRAVEL_TIME->AVERAGESPEED;
+                            $model->jamfactor = (float) $route->JAMFACTOR;
+                            $model->jamfactor_trend = (float) $route->JAMFACTORTREND;
                             $model->update_time = new CDbExpression('NOW()');
                             if(!$model->save())
                             {
