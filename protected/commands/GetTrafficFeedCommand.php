@@ -30,7 +30,7 @@ class GetTrafficFeedCommand extends CConsoleCommand
                    foreach($data->KEYROUTES->ROUTE as $route)
                    {
                        $routeId = (int) $route['ID']->__toString();
-                       if($this->routeExists($incidentId))
+                       if($this->routeExists($routeId))
                        {
                             // Update existing incident record
                            Route::model()->updateByPk($routeId, array(
