@@ -11,7 +11,25 @@ $this->menu=array(
 
 <h1>Routes</h1>
 
-<?php $this->widget('bootstrap.widgets.TbListView',array(
+<?php $this->widget('bootstrap.widgets.TbGridView',array(
+	'id'=>'route-grid',
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
+	'columns'=>array(
+		'name',
+		'description',
+		'drivetime',
+		'delaytime',
+                array(
+                    'name'=>'update_time',
+                    'value'=>'Yii::app()->format->timeago($data->update_time)'
+                )
+		/*
+		'length',
+		'jamfactor',
+		'jamfactor_trend',
+		'path',
+		
+		'average_speed',
+		*/
+	),
 )); ?>
