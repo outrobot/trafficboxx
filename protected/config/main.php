@@ -50,6 +50,10 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
+                
+                'format' => array(
+                    'class' => 'application.extensions.timeago.TimeagoFormatter',
+                ),
             
                 'bootstrap'=>array(
                         'class'=>'bootstrap.components.Bootstrap',
@@ -58,7 +62,7 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=trafficbox',
 			'emulatePrepare' => true,
-			'username' => 'root',
+			'username' => 'traffic',
 			'password' => 'marvin',
 			'charset' => 'utf8',
 		),

@@ -30,6 +30,9 @@ class Incident extends CActiveRecord
         const TYPE_POLICEACTIVITY = 6;
         const TYPE_GAME = 7;
         const TYPE_DISABLED_VEHICLE = 8;
+        const TYPE_WIRES = 9;
+        const TYPE_RACE = 10;
+        const TYPE_WATER = 11;
         
         const TYPE_NAME_CONSTRUCTION = 'CONST';
         const TYPE_NAME_ACCIDENT = 'ACC';
@@ -39,6 +42,9 @@ class Incident extends CActiveRecord
         const TYPE_NAME_POLICEACTIVITY = 'PA';
         const TYPE_NAME_GAME = 'GAME';
         const TYPE_NAME_DISABLED_VEHICLE = 'DVEH';
+        const TYPE_NAME_WIRES_DOWN = 'WIRES';
+        const TYPE_NAME_RACE = 'RACE';
+        const TYPE_NAME_WATER_BREAK = 'WATER';
         
         
 	/**
@@ -152,6 +158,7 @@ class Incident extends CActiveRecord
         public function getTypeId($typeString)
         {
             $typeArray = array(
+                0 => 'Select',
                 self::TYPE_NAME_ACCIDENT => self::TYPE_ACCIDENT,
                 self::TYPE_NAME_ALERT => self::TYPE_ALERT,
                 self::TYPE_NAME_CONSTRUCTION => self::TYPE_CONSTRUCTION,
@@ -159,9 +166,50 @@ class Incident extends CActiveRecord
                 self::TYPE_NAME_FIRE => self::TYPE_FIRE,
                 self::TYPE_NAME_GAME => self::TYPE_GAME,
                 self::TYPE_NAME_POLICEACTIVITY => self::TYPE_POLICEACTIVITY,
-                self::TYPE_NAME_TRANSIT => self::TYPE_TRANSIT
+                self::TYPE_NAME_TRANSIT => self::TYPE_TRANSIT,
+                self::TYPE_NAME_WIRES_DOWN => self::TYPE_WIRES,
+                self::TYPE_NAME_RACE => self::TYPE_RACE,
+                self::TYPE_NAME_WATER_BREAK => self::TYPE_WATER
             );
             
             return array_key_exists($typeString, $typeArray) ? $typeArray[$typeString] : self::TYPE_UNKNOWN;
         }
+        
+        public function getTypeText()
+        {
+            $typeArray = array(
+                self::TYPE_ACCIDENT => self::TYPE_NAME_ACCIDENT,
+                self::TYPE_ALERT => self::TYPE_NAME_ALERT,
+                self::TYPE_CONSTRUCTION => self::TYPE_NAME_CONSTRUCTION,
+                self::TYPE_DISABLED_VEHICLE => self::TYPE_NAME_DISABLED_VEHICLE,
+                self::TYPE_FIRE => self::TYPE_NAME_FIRE,
+                self::TYPE_GAME => self::TYPE_NAME_GAME,
+                self::TYPE_POLICEACTIVITY => self::TYPE_NAME_POLICEACTIVITY,
+                self::TYPE_TRANSIT => self::TYPE_NAME_TRANSIT,
+                self::TYPE_WIRES => self::TYPE_NAME_WIRES_DOWN,
+                self::TYPE_RACE => self::TYPE_NAME_RACE,
+                self::TYPE_WATER => self::TYPE_NAME_WATER_BREAK
+            );
+            
+            return array_key_exists($this->type, $typeArray) ? $typeArray[$this->type] : 'Unknown';
+        }
+        
+        public function getTypeOptions()
+	{
+                $typeArray = array(
+                    self::TYPE_ACCIDENT => self::TYPE_NAME_ACCIDENT,
+                    self::TYPE_ALERT => self::TYPE_NAME_ALERT,
+                    self::TYPE_CONSTRUCTION => self::TYPE_NAME_CONSTRUCTION,
+                    self::TYPE_DISABLED_VEHICLE => self::TYPE_NAME_DISABLED_VEHICLE,
+                    self::TYPE_FIRE => self::TYPE_NAME_FIRE,
+                    self::TYPE_GAME => self::TYPE_NAME_GAME,
+                    self::TYPE_POLICEACTIVITY => self::TYPE_NAME_POLICEACTIVITY,
+                    self::TYPE_TRANSIT => self::TYPE_NAME_TRANSIT,
+                    self::TYPE_WIRES => self::TYPE_NAME_WIRES_DOWN,
+                    self::TYPE_RACE => self::TYPE_NAME_RACE,
+                    self::TYPE_WATER => self::TYPE_NAME_WATER_BREAK
+                );
+		
+		return $typeArray;
+	}
 }

@@ -26,7 +26,7 @@ class GetTrafficFeedCommand extends CConsoleCommand
                        echo "\t", $error->message;
                    }
                } else {
-
+                   
                    foreach($data->KEYROUTES->ROUTE as $route)
                    {
                        $routeId = (int) $route['ID']->__toString();
@@ -60,47 +60,30 @@ class GetTrafficFeedCommand extends CConsoleCommand
                             }
                        }
                    }
-
+                   Incident::model()->deleteAll();
                    foreach($data->INCIDENTS->INCIDENT as $incident)
                    {       
-                       $incidentId = (int) $incident['ID']->__toString();
-                       if($this->incidentExists($incidentId))
-                       {
-                            // Update existing incident record
-                           Incident::model()->updateByPk($incidentId, array(
-                                'description' => $incident->DESCRIPTION,
-                                'location' => $incident->LOCATION,
-                                'criticality' => $incident->CRITICALITY,
-                                'type' => Incident::model()->getTypeId($incident->TYPE['ID']->__toString()),
-                                'type_description' => $incident->TYPE_DESC,
-                                'direction' => $incident->DIRECTION['VALUE'],
-                                'gps_lat' => (float) $incident->GEOLOCATION['LATITUDE'],
-                                'gps_lng' => (float) $incident->GEOLOCATION['LONGITUDE'],
-                                'start_time' => $this->convertToSqlDate($incident->STARTTIME['VALUE']),
-                                'end_time' => $this->convertToSqlDate($incident->ENDTIME['VALUE']),
-                                'update_time' => new CDbExpression('NOW()')
-                           ));
-                       } else {
-                            // Create new incident record
-                            $model = new Incident;
-                            $model->id = $incidentId;
-                            $model->description = $incident->DESCRIPTION;
-                            $model->location = $incident->LOCATION; 
-                            $model->criticality = (int) $incident->CRITICALITY; 
-                            $model->type = $model->getTypeId($incident->TYPE['ID']->__toString());
-                            $model->type_description = $incident->TYPE_DESC; 
-                            $model->direction = $incident->DIRECTION['VALUE'];
-                            $model->gps_lat = (float) $incident->GEOLOCATION['LATITUDE'];
-                            $model->gps_lng = (float) $incident->GEOLOCATION['LONGITUDE'];
-                            $model->start_time = $this->convertToSqlDate($incident->STARTTIME['VALUE']);
-                            $model->end_time = $this->convertToSqlDate($incident->ENDTIME['VALUE']);
-                            $model->create_time = new CDbExpression('NOW()');
-                            $model->update_time = new CDbExpression('NOW()');
-                            if(!$model->save())
-                            {
-                                echo var_dump($model->getErrors());
-                            }
-                       }
+                        $incidentId = (int) $incident['ID']->__toString();
+                        
+                        // Create new incident record
+                        $model = new Incident;
+                        $model->id = $incidentId;
+                        $model->description = substr($incident->DESCRIPTION, 0, 255);
+                        $model->location = $incident->LOCATION; 
+                        $model->criticality = (int) $incident->CRITICALITY; 
+                        $model->type = $model->getTypeId($incident->TYPE['ID']->__toString());
+                        $model->type_description = $incident->TYPE_DESC; 
+                        $model->direction = $incident->DIRECTION['VALUE'];
+                        $model->gps_lat = (float) $incident->GEOLOCATION['LATITUDE'];
+                        $model->gps_lng = (float) $incident->GEOLOCATION['LONGITUDE'];
+                        $model->start_time = $this->convertToSqlDate($incident->STARTTIME['VALUE']);
+                        $model->end_time = $this->convertToSqlDate($incident->ENDTIME['VALUE']);
+                        $model->create_time = new CDbExpression('NOW()');
+                        $model->update_time = new CDbExpression('NOW()');
+                        if(!$model->save())
+                        {
+                            echo var_dump($model->getErrors());
+                        }
                    }
                }
             }
