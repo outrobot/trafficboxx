@@ -33,7 +33,7 @@ class GetTrafficFeedCommand extends CConsoleCommand
                        if($this->routeExists($routeId))
                        {
                             // Update existing incident record
-                           Route::model()->updateByPk($routeId, array(
+                           Route::model()->updateByPk((int) $route['ID']->__toString(), array(
                                 'drivetime' => (int) $route->TRAVEL_TIME->DRIVETIME,
                                 'delaytime' => (int) $route->TRAVEL_TIME->DELAYTIME,
                                 'average_speed' => (int) $route->TRAVEL_TIME->AVERAGESPEED,
