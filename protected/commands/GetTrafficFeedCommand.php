@@ -29,14 +29,32 @@ class GetTrafficFeedCommand extends CConsoleCommand
 
                    foreach($data->KEYROUTES->ROUTE as $route)
                    {
-                       Route::model()->updateByPk((int) $route['ID']->__toString(), array(
-                            'drivetime' => (int) $route->TRAVEL_TIME->DRIVETIME,
-                            'delaytime' => (int) $route->TRAVEL_TIME->DELAYTIME,
-                            'average_speed' => (int) $route->TRAVEL_TIME->AVERAGESPEED,
-                            'jamfactor' => (float) $route->JAMFACTOR,
-                            'jamfactor_trend' => (float) $route->JAMFACTORTREND,
-                            'update_time' => new CDbExpression('NOW()')
-                       ));
+                       $routeId = (int) $route['ID']->__toString();
+                       if($this->routeExists($incidentId))
+                       {
+                            // Update existing incident record
+                           Route::model()->updateByPk($routeId, array(
+                                'drivetime' => (int) $route->TRAVEL_TIME->DRIVETIME,
+                                'delaytime' => (int) $route->TRAVEL_TIME->DELAYTIME,
+                                'average_speed' => (int) $route->TRAVEL_TIME->AVERAGESPEED,
+                                'jamfactor' => (float) $route->JAMFACTOR,
+                                'jamfactor_trend' => (float) $route->JAMFACTORTREND,
+                                'update_time' => new CDbExpression('NOW()')
+                           ));
+                       } else {
+                            $model = new Route;
+                            $model->id = $route['ID']->__toString();
+                            $model->permanent_id = $route->PERMANENTID;
+                            $model->name = $route->NAME;
+                            $model->description = $route->DESCRIPTION;
+                            $model->drivetime = $route->TRAVEL_TIME->DRIVETIME;
+                            $model->delaytime = $route->TRAVEL_TIME->DELAYTIME;
+                            $model->length = $route->TRAVEL_TIME->LENGTH;
+                            $model->average_speed = $route->TRAVEL_TIME->AVERAGESPEED;
+                            $model->jamfactor = $route->JAMFACTOR;
+                            $model->jamfactor_trend = $route->JAMFACTORTREND;
+                            $model->update_time = new CDbExpression('NOW()');
+                       }
                    }
 
                    foreach($data->INCIDENTS->INCIDENT as $incident)
@@ -89,6 +107,15 @@ class GetTrafficFeedCommand extends CConsoleCommand
        return Yii::app()->db->createCommand()
                ->select('*')
                ->from('tbl_incident')
+               ->where('id=:Id', array(':Id'=>$id))
+               ->queryScalar();
+    }
+    
+    private function routeExists($id)
+    {
+       return Yii::app()->db->createCommand()
+               ->select('*')
+               ->from('tbl_route')
                ->where('id=:Id', array(':Id'=>$id))
                ->queryScalar();
     }
