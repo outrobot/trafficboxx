@@ -210,12 +210,44 @@ class SiteController extends Controller
             
             
             $pathData = 'auqrF|vtiMe@vE?@MtAADMlAMlAOnAMpA]jBKx@M`ACRE^G\\g@vDi@vD{A~KCV?@AJIl@?FQrBAJKrA_@|FAPCPK`Be@bHo@rJe@vGIxAG~@?NeAbP?HOtBOtBMlBIhAG`AG|@q@dKEj@Cb@}AtUEb@I|AM|CAl@EhA?LElBA@?DIjC_C|]Cb@Cf@E\\Gj@Kl@Mb@Up@Wl@_@l@Y^YZQLWRQJULc@PYHQDOBYDO@U@W?WAc@Ci@EmBWyKaB}Ec@[EA?c@ACAM?]Fo@HSD[JIDE@EBGBKD?@i@ZkAtAQZMRaAjBU^IJOTOL_@^aA~@GDGHCDCBGLQROL_BzAi@d@yAtAyAtAQPaKdJg@b@mBjBs@p@WXMPuB`Ca@d@c@h@cAdAs@p@aA|@qChC_@ZOJOHOHUJUFMDQBWFQ?M@O?c@@OAC?WAs@EU?O?QA]AeAG_AEc@Cw@E}@Gm@Ee@Gg@Ii@Ki@Qg@QYOe@YWOQOA??A_@Yg@g@k@k@{@aAg@e@IIAACECACEGEs@u@EGA?ACGGKIuByBKMOMa@c@yDuDSSi@i@i@i@k@i@IIGEGEIGc@a@oBoBm@k@u@u@WYUWOSm@s@GIA?]c@y@}@_@a@eA_A][}AoBg@y@w@aAW_@IKo@gAy@sAq@cAMOe@eA]k@uA}Bu@sAUa@kBcDcAeBq@iAOWIGcCiE]k@y@eAk@o@iBwAi@[iB_AaAg@UMuAk@s@]gBu@]M[KUIEACACAeA[wC{@sC}@c@MA?o@SCAeA[c@Eg@KCAa@K';
-            $overviewData = 'auqrF|vtiMoBrRi@dDQtA_BlL_BxLK`A_ApMw@hL}Dxm@sBb[cBxVWzFMrFAFIjC_C|]GjAMhAYpAm@~Ay@lAk@h@i@^y@^k@Ni@He@Bo@AmAIgOyByFi@e@Ao@DcANe@P_@Ni@\\}ApBoA~B_@j@_@b@aB~AWXY`@oBhBoFbFiLhKaD|C}DrEgBnBuBnBqDdD_@Te@Tc@Li@J_@@gA?kAGe@?uDQgEWmAQsA]aAa@}@i@s@k@wD{DsAuA]]sDyDaH}GeA_AkEeEsB{BuAaByA_BcB{A}AoBg@y@oAaBeDkFs@uAsBiD{F_KaAaBIGcCiEwAqBk@o@iBwAsC{AaAg@gGmCuAe@_LgDyBq@kAQe@MUS_@Uu@O_AIsACqAF}@Ly@Vo@Zq@f@EB';
+            $overviewData = 'adssFb_gkMjCiBZUd@k@n@oARgBAaAScASa@[Yu@]gAAmABq@Gq@c@MOGWWo@c@sA}@{DyA_IUWy@mIeAwJqAgIkAeHg@wC?o@QuAGu@Am@Bc@Nm@`@c@VMTCd@DTLPRVl@Fx@C`@Id@sAzEYr@{BjGGDe@h@WPc@Je@CWMYWSg@G_@Ak@PoDBs@Ns@Xg@ZUVI\\?XFRLRXJRPz@nBtKjArJZrCAX~@rHz@rGbApF`BfGxBhHRlADxAOfB]tAk@`AeB`ByKhIS`@mVdQ}DdCqGxDqBpAmGnEyGzEwC~AuC`A}B`@uANyADsB@aFB{FAyABkBNgB^uHlCyDvAsA`@qBXgEPoB@}@F{CP{@FkI@sDAaGJoDDoBNmB^eCz@y@b@mAx@{AnAuA`By@pAw@zAa@bAm@hBq@vCYpBQrBKlD@nBHtBj@xF`DfWdPtqAp@lF^jEHdCAhBOxD_@dCi@|Bi@xAm@jAk@~@{@dAu@r@wBtAoAf@aBZgAHmA@uBOqBg@mAc@yBkAcNaIiDoBiCiAuA_@sASyAKoD@_ITsB?{BMyBc@{By@eCwA}JaHeDyBiAm@gBo@_Ce@_CSuA?kBJqAPoAXeBj@sEpBeCrAoEnCmE~CgEdDwHjG_DnCiIxHaKjK}I~JoIjKeDlEkD`F{BnDiClEiEtI_DnHeSbf@eGpOcChHkCrIaOze@qDzKgBxEwD~IoF~KaNtX{BtEsB|EsAtD_BjFsEfPsEtPkB`GqAhDuA`DcBfDsBhDkD`FgDzDcE~DyDxCcEhCaBz@yBbA}B|@uBp@iD|@wFpAyLpCyBn@aCx@gEhBuDrBqE|C_ClB_DxCuB`CqD|EiAdBoA`CyAbDgAtCyFxNcBlDeBtCmBhCeCnCcA`AcClB{AbAqFdDeNfI}IzFcHbEkG~D{NvIeGzDaDhBu^rRsLfGaDhByItEoOxHiFtCm@f@wAvAiApAmAhBoAfC}c@`aA_[`q@eAlC{@hCuAjFaAjF]lCa@dFeBrUqCh_@a@vFEfDHzBZ~Cf@fCp@`CnDhLt@xC^~CLbD\\hx@JfFLnB\\bD\\nB^`Bp@|BfApCr@xAvB~CzCrDhRfTvBdCvAnBt@tAp@~Ah@bB`@lB\\~BbGph@x@tHRnC@t@CrBWnCgF~[mHbd@gAxFy@`D_A~C{BpHyBpHa@bBcCfLyBtKa@bCa@zCaCjUm@lF}@vFy@hEc@zBIJCFITOb@UVYJU@_@KSQSa@Gq@Fu@Rc@TQf@MNGFGh@CdACJ?';
             $path = urlencode($overviewData);
+
+            $url = 'http://api.tiles.mapbox.com/v4/outrobot.j5d8dfpg/path-5+f44+f44(' . $path . ')/auto/1200x1200.png?access_token=' . $token;
+            echo CHtml::image($url);
+        }
+        
+        public function actionGetPath()
+        {
+            $start = str_replace(' ', '', '40.087548, -75.402788');
+            $end = str_replace(' ', '', '39.905912, -75.133714');
             
-            $lat = 39.9594369;
-            $lng = -75.1500746;
-            $url = 'http://api.tiles.mapbox.com/v4/outrobot.j5d8dfpg/path-5+f44+f44(' . $path . ')/auto/500x300.png?access_token=' . $token;
+            $url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' . $start . '&destination=' . $end;
+            $raw_response = file_get_contents($url);
+            $decoded_response = json_decode($raw_response);
+            /*
+            $pathData = '';
+            $steps = $decoded_response->routes[0]->legs[0]->steps;
+            foreach($steps as $step)
+            {
+                $pathData .= $step->polyline->points;
+            }
+            if(strlen($pathData) > 4096){
+                $pathData = $decoded_response->routes[0]->overview_polyline->points;
+            }
+             * 
+             */
+            
+            $pathData = $decoded_response->routes[0]->overview_polyline->points;
+            $token = 'pk.eyJ1Ijoib3V0cm9ib3QiLCJhIjoiSHFjYTVEcyJ9.A1HPH5dGkeA2ultB60BMcg';
+
+            $path = urlencode($pathData);
+
+            $url = 'http://api.tiles.mapbox.com/v4/outrobot.j5d8dfpg/path-5+f44+f44(' . $path . ')/auto/1200x1200.png?access_token=' . $token;
+            echo CHtml::image($url);
+            echo '<hr>';
+            echo $pathData;
+            echo '<hr>';
             echo $url;
         }
 }
