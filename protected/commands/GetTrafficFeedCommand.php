@@ -68,7 +68,8 @@ class GetTrafficFeedCommand extends CConsoleCommand
                         // Create new incident record
                         $model = new Incident;
                         $model->id = $incidentId;
-                        $model->description = substr($incident->DESCRIPTION, 0, 255);
+                        $description = preg_replace('/\s+/', ' ', $incident->DESCRIPTION);
+                        $model->description = substr($description, 0, 255);
                         $model->location = $incident->LOCATION; 
                         $model->criticality = (int) $incident->CRITICALITY; 
                         $model->type = $model->getTypeId($incident->TYPE['ID']->__toString());
