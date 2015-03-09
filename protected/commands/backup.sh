@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # System + MySQL backup script
 # Full backup day - Sun (rest of the day do incremental backup)
 # Copyright (c) 2005-2006 nixCraft <http://www.cyberciti.biz/fb/>
@@ -67,7 +67,7 @@ quit
 EOF
 
 ### Find out if ftp backup failed or not ###
-if [ "$?" == "0" ]; then
+if [ "$?" = "0" ]; then
  rm -f $BACKUP/*
 else
  T=/tmp/backup.fail
