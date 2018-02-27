@@ -33,10 +33,14 @@ class Incident extends CActiveRecord
         const TYPE_WIRES = 9;
         const TYPE_RACE = 10;
         const TYPE_WATER = 11;
+        const TYPE_CONST_ONGO = 12;
+        const TYPE_BRIDGE = 13;
+        const TYPE_EVENT = 14;
+        const TYPE_TUNNEL = 15;
         
         const TYPE_NAME_CONSTRUCTION = 'CONST';
         const TYPE_NAME_ACCIDENT = 'ACC';
-        const TYPE_NAME_TRANSIT = 'TRANS';
+        const TYPE_NAME_TRANSIT = 'TRANSIT';
         const TYPE_NAME_ALERT = 'ALRT';
         const TYPE_NAME_FIRE = 'FIRE';
         const TYPE_NAME_POLICEACTIVITY = 'PA';
@@ -45,6 +49,11 @@ class Incident extends CActiveRecord
         const TYPE_NAME_WIRES_DOWN = 'WIRES';
         const TYPE_NAME_RACE = 'RACE';
         const TYPE_NAME_WATER_BREAK = 'WATER';
+        const TYPE_NAME_CONSTRUCTION_ONGOING = 'ONGO';
+        const TYPE_NAME_BRIDGE_REPAIR = 'BRIDGE';
+        const TYPE_NAME_EVENT = 'EVENT';
+        const TYPE_NAME_TUNNEL_REPAIR = 'TUNNEL';
+
         
         
 	/**
@@ -129,7 +138,7 @@ class Incident extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('location',$this->location,true);
 		$criteria->compare('criticality',$this->criticality);
-		$criteria->compare('type',$this->type,true);
+		$criteria->compare('type',$this->type);
 		$criteria->compare('direction',$this->direction,true);
 		$criteria->compare('type_description',$this->type_description,true);
 		$criteria->compare('gps_lat',$this->gps_lat);
@@ -169,7 +178,11 @@ class Incident extends CActiveRecord
                 self::TYPE_NAME_TRANSIT => self::TYPE_TRANSIT,
                 self::TYPE_NAME_WIRES_DOWN => self::TYPE_WIRES,
                 self::TYPE_NAME_RACE => self::TYPE_RACE,
-                self::TYPE_NAME_WATER_BREAK => self::TYPE_WATER
+                self::TYPE_NAME_WATER_BREAK => self::TYPE_WATER,
+                self::TYPE_NAME_CONSTRUCTION_ONGOING => self::TYPE_CONST_ONGO,
+                self::TYPE_NAME_BRIDGE_REPAIR => self::TYPE_BRIDGE,
+                self::TYPE_NAME_EVENT => self::TYPE_EVENT,
+                self::TYPE_NAME_TUNNEL_REPAIR => self::TYPE_TUNNEL
             );
             
             return array_key_exists($typeString, $typeArray) ? $typeArray[$typeString] : self::TYPE_UNKNOWN;
@@ -188,7 +201,11 @@ class Incident extends CActiveRecord
                 self::TYPE_TRANSIT => self::TYPE_NAME_TRANSIT,
                 self::TYPE_WIRES => self::TYPE_NAME_WIRES_DOWN,
                 self::TYPE_RACE => self::TYPE_NAME_RACE,
-                self::TYPE_WATER => self::TYPE_NAME_WATER_BREAK
+                self::TYPE_WATER => self::TYPE_NAME_WATER_BREAK,
+                self::TYPE_CONST_ONGO => self::TYPE_NAME_CONSTRUCTION_ONGOING,
+                self::TYPE_BRIDGE => self::TYPE_NAME_BRIDGE_REPAIR,
+                self::TYPE_EVENT => self::TYPE_NAME_EVENT,
+                self::TYPE_TUNNEL => self::TYPE_NAME_TUNNEL_REPAIR
             );
             
             return array_key_exists($this->type, $typeArray) ? $typeArray[$this->type] : 'Unknown';
@@ -207,7 +224,11 @@ class Incident extends CActiveRecord
                     self::TYPE_TRANSIT => self::TYPE_NAME_TRANSIT,
                     self::TYPE_WIRES => self::TYPE_NAME_WIRES_DOWN,
                     self::TYPE_RACE => self::TYPE_NAME_RACE,
-                    self::TYPE_WATER => self::TYPE_NAME_WATER_BREAK
+                    self::TYPE_WATER => self::TYPE_NAME_WATER_BREAK,
+                    self::TYPE_CONST_ONGO => self::TYPE_NAME_CONSTRUCTION_ONGOING,
+                    self::TYPE_BRIDGE => self::TYPE_NAME_BRIDGE_REPAIR,
+                    self::TYPE_EVENT => self::TYPE_NAME_EVENT,
+                    self::TYPE_TUNNEL => self::TYPE_NAME_TUNNEL_REPAIR
                 );
 		
 		return $typeArray;

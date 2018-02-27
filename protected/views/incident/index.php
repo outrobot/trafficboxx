@@ -24,15 +24,16 @@ $this->menu=array(
                     'value'=>'$data->getTypeText()',
                     'filter'=>$model->getTypeOptions()
                 ),
-                array(
-                    'name'=>'create_time',
-                    'value'=>'Yii::app()->format->timeago($data->create_time)'
-                ),
-                array(
-                    'name'=>'update_time',
-                    'value'=>'Yii::app()->format->timeago($data->update_time)',
-                    'visible'=>'$data->create_time != $data->update_time'
-                ),
+                'direction',
+//                array(
+//                    'name'=>'create_time',
+//                    'value'=>'Yii::app()->format->timeago($data->create_time)'
+//                ),
+//                array(
+//                    'name'=>'update_time',
+//                    'value'=>'Yii::app()->format->timeago($data->update_time)',
+//                    'visible'=>'$data->create_time != $data->update_time'
+//                ),
                 'start_time'
 		/*
 		'type_description',

@@ -19,14 +19,11 @@ $this->menu=array(
 		'description',
 		'drivetime',
 		'delaytime',
-                array(
-                    'name'=>'update_time',
-                    'value'=>'Yii::app()->format->timeago($data->update_time)'
-                )
+                'jamfactor',
+                'average_speed',
+//		'jamfactor_trend',
 		/*
 		'length',
-		'jamfactor',
-		'jamfactor_trend',
 		'path',
 		
 		'average_speed',
